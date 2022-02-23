@@ -1,0 +1,55 @@
+class MyDateValidator extends CValidator
+
+{
+
+    public $date_first;
+
+    public $date_second;
+
+
+
+    public function validateAttribute( $model, $attribute )
+
+    {
+
+        $value  = $model -> $attribute;
+
+
+
+        if( $attribute == 'date1' )
+
+        {
+
+            $this -> date_first = $value;
+
+        }
+
+
+
+        if( $attribute == 'date2' )
+
+        {
+
+            $this -> date_second = $value;
+
+        }
+
+
+
+        if( $this -> date_first !== NULL && $this -> date_second !== NULL )
+
+        {
+
+            if( $this -> date_first > $this -> date_second )
+
+            {
+
+                $model -> addError( $attribute, 'date2 needs to be after date1' );
+
+            }
+
+        }
+
+    }
+
+}
